@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html ng-app="myFirstApp" >
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Info</title>
+
+<!-- CSS -->
+<!-- load bootstrap and add some custom css -->
+<link rel="stylesheet" href="bootstrap.min.css">
+<style>
+body { padding-top:50px; }
+h1{ text-align: center;}
+.help-block{margin-bottom:0px}
+</style>
+
+<!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="Custinfo.js"></script>
+
+</head>
+
+<div><img src="https://s31.postimg.org/jtwu0tkor/logo.png" alt="Responsive image" class="img-responsive center-block" /></div>
+<div class="Jumbotron"><h1>Customer Information</h1></div>
+<br/>
+<body class="container">
+
+<!-- create our form -->
+<form name="custForm" ng-controller="myFirstController" action="" method="POST" novalidate>
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- First name field -->
+      <div class="form-group col-lg-4">
+        <label>First Name</label>
+        <input type="text" name="Fname" Placeholder="First Name" class="form-control" 
+        ng-model="fname"
+        ng-maxlength="30"
+        ng-pattern="/^[a-zA-Z ]{1,40}$/"
+        ng-required="true">
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="custForm.Fname.$error.required && custForm.Fname.$touched" class="help-block">First Name is required.</span>
+          <span ng-show="custForm.Fname.$error.pattern && custForm.Fname.$dirty" class="help-block">Enter valid first name</span>
+          <span ng-show="custForm.Fname.$error.maxlength && custForm.Fname.$dirty" class="help-block">First Name is too long</span>
+        </div>
+      </div>
+
+      <!-- Middle name field -->
+      <div class="form-group col-lg-4">
+        <label>Middle Name</label>
+        <input type="text" name="Mname" Placeholder="Optional" class="form-control" 
+        ng-model="mname"
+        ng-maxlength="30">
+
+        <!-- ngMessages goes here -->
+        <div class="has-error has-feedback" ng-show="custForm.Mname.$dirty">
+          <span ng-show="custForm.Mname.$error.maxlength" class="help-block">Middle Name is too long</span>
+        </div>
+      </div>
+
+      <!-- Last name field -->
+      <div class="form-group col-lg-4">
+        <label>Last Name</label>
+        <input type="text" name="Lname" Placeholder="Last Name" class="form-control" 
+        ng-model="lname"
+        ng-maxlength="30"
+        ng-pattern="/^[a-zA-Z ]{1,40}$/"
+        ng-required="true">
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="custForm.Lname.$error.pattern && custForm.Lname.$dirty" class="help-block">Enter valid Last name</span>
+          <span ng-show="custForm.Lname.$error.required && custForm.Lname.$touched" class="help-block">Last Name is required.</span>
+          <span ng-show="custForm.Lname.$error.maxlength && custForm.Lname.$dirty" class="help-block">Last Name is too long</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--!**!**!*!**!*!**!**!*!**!*!**!*!*!**!*!**!*!*!**!*!**!*!*!**!*!U*!**!**!*!**!**!**!**!*!**!*!**!*!*!**!*!**!*!**!*!**!**!***!*!**!**!**!*!***!*@!**@*@**@*!***!**!**!*!**!*!**!*-->   
+
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Address1 field -->
+      <div class="form-group col-lg-12">
+        <label>Address 1</label>
+        <input type="text" name="Addr1" Placeholder="Enter the address here" class="form-control" 
+        ng-model="addr1"
+        ng-maxlength="50"
+        ng-required="true">
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="custForm.Addr1.$error.maxlength && custForm.Addr1.$dirty" class="help-block">Address is too long</span>
+          <span ng-show="custForm.Addr1.$error.required && custForm.Addr1.$touched" class="help-block">Address is required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--!**!**!*!**!*!**!**!*!**!*!**!*!*!**!*!**!*!*!**!*!**!*!*!**!*!U*!**!**!*!**!**!**!**!*!**!*!**!*!*!**!*!**!*!**!*!**!**!***!*!**!**!**!*!***!*@!**@*@**@*!***!**!**!*!**!*!**!*-->       
+
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Address2 field -->
+      <div class="form-group col-lg-12">
+        <label>Address 2</label>
+        <input type="text" name="Addr2" placeholder="Optional" class="form-control" 
+        ng-model="addr2"
+        ng-maxlength="50">
+
+        <!-- ngMessages goes here -->
+        <div class="has-error" ng-show="custForm.Addr2.$dirty">
+          <span ng-show="custForm.Addr2.$error.maxlength" class="help-block">Address is too long</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--!**!**!*!**!*!**!**!*!**!*!**!*!*!**!*!**!*!*!**!*!**!*!*!**!*!U*!**!**!*!**!**!**!**!*!**!*!**!*!*!**!*!**!*!**!*!**!**!***!*!**!**!**!*!***!*@!**@*@**@*!***!**!**!*!**!*!**!*-->           
+
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- City name field -->
+      <div class="form-group col-lg-6">
+        <label>City</label>
+        <input type="text" name="City" Placeholder="Enter City here" class="form-control" 
+        ng-model="city"
+        ng-maxlength="30"
+        ng-pattern="/^[a-zA-Z ]{1,40}$/"
+        ng-required="true">
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="custForm.City.$error.required && custForm.City.$touched" class="help-block">City is required</span>
+          <span ng-show="custForm.City.$error.pattern && custForm.City.$dirty" class="help-block">Enter valid City name</span>
+          <span ng-show="custForm.City.$error.maxlength && custForm.City.$dirty" class="help-block">City is too long</span>
+        </div>
+      </div>
+
+      <!-- State name field -->
+      <div class="form-group col-lg-3">
+        <label>State</label>
+        <input type="text" name="State" Placeholder="Enter State here" class="form-control" 
+        ng-model="state"
+        ng-maxlength="25"
+        ng-pattern="/^[a-zA-Z ]{1,30}$/"
+        required>
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="custForm.State.$error.required && custForm.State.$touched" class="help-block">State is required</span>
+          <span ng-show="custForm.State.$error.pattern && custForm.State.$dirty" class="help-block">Enter valid State name</span>
+          <span ng-show="custForm.State.$error.maxlength && custForm.State.$dirty" class="help-block">State is too long</span>
+        </div>
+      </div>
+
+      <!-- Zip Code field -->
+      <div class="form-group col-lg-3">
+        <label>Zip Code</label>
+        <input type="text" name="Zip" Placeholder="Zip code" class="form-control" 
+        ng-model="zip"
+        ng-pattern="/^[0-9]{6}$/"
+        required>
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="custForm.Zip.$error.required && custForm.Zip.$touched" class="help-block">Zip is required</span>
+          <span ng-show="custForm.Zip.$error.pattern && custForm.Zip.$touched" class="help-block">Enter valid Zip code</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--!**!**!*!**!*!**!**!*!**!*!**!*!*!**!*!**!*!*!**!*!**!*!*!**!*!U*!**!**!*!**!**!**!**!*!**!*!**!*!*!**!*!**!*!**!*!**!**!***!*!**!**!**!*!***!*@!**@*@**@*!***!**!**!*!**!*!**!*-->           
+
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Contact number field -->
+      <div class="form-group col-lg-6">
+        <label>Contact number</label>
+        <input type="text" name="Cn" Placeholder="Contact number" class="form-control" 
+        ng-model="cn"
+        ng-pattern="/^[0-9]{10}$/"
+        required>
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="custForm.Cn.$error.required && custForm.Cn.$touched" class="help-block">Contact number is required</span>
+          <span ng-show="custForm.Cn.$error.pattern && custForm.Cn.$touched" class="help-block">Enter valid Contact number</span>
+        </div>
+      </div>
+
+      <!-- email field -->
+      <div class="form-group col-lg-6">
+        <label>Email</label>
+        <input type="email" name="Email" Placeholder="Email address" class="form-control" 
+        ng-model="email"
+        ng-pattern="/^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/"
+        required>
+
+        <!-- ngMessages goes here -->
+        <div class="has-error" ng-show="custForm.Email.$dirty">
+          <span ng-show="custForm.Email.$error.required" class="help-block">Email is required</span>
+          <span ng-show="custForm.Email.$error.pattern" class="help-block">Enter valid Email address</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--!**!**!*!**!*!**!**!*!**!*!**!*!*!**!*!**!*!*!**!*!**!*!*!**!*!U*!**!**!*!**!**!**!**!*!**!*!**!*!*!**!*!**!*!**!*!**!**!***!*!**!**!**!*!***!*@!**@*@**@*!***!**!**!*!**!*!**!*-->           
+  <div class="col-lg-12">
+    <span class="help-box">Please select atleast one way of communication</span>
+  </div>
+  <div class="col-lg-12 form-group checkbox">
+    <label>
+      <input type="checkbox" name="Whatsapp"
+      ng-model="Whatsapp" 
+      ng-required="!(Whatsapp || Email || SMS)"/> Send offers through Whatsapp
+    </label>
+    <br/>
+    <label>
+      <input type="checkbox" name="Emailcheck" 
+      ng-model="Email" 
+      ng-required="!(Whatsapp || Email || SMS)"/> Send offers through Email
+    </label>
+    <br/>
+    <label>
+      <input type="checkbox" name="SMS" 
+      ng-model="SMS" 
+      ng-required="!(Whatsapp || Email || SMS)"/> Send offers through SMS
+    </label>
+  </div>
+
+  <!--!**!**!*!**!*!**!**!*!**!*!**!*!*!**!*!**!*!*!**!*!**!*!*!**!*!U*!**!**!*!**!**!**!**!*!**!*!**!*!*!**!*!**!*!**!*!**!**!***!*!**!**!**!*!***!*@!**@*@**@*!***!**!**!*!**!*!**!*-->             
+
+  <div class="row">
+    <div class="form-group col-lg-12">
+      <button type="submit" class="btn btn-danger center-block" ng-click="submitForm(custForm.$valid)" ng-disabled="custForm.$invalid">Submit</button>
+    </div>
+  </div>
+
+</form>
+
+</body>
+</html>
