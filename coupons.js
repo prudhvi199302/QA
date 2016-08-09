@@ -5,7 +5,7 @@ var myFirstApp = angular.module('myFirstApp', []);
 // create angular controller
 myFirstApp.controller('myFirstController', ['$scope', '$http', function($scope, $http) {
 	
-	$scope.url = "insertcoupons.php";
+	$scope.url = "coupons.php";
   //function to submit the form after all validation has occured	
   $scope.submitForm = function(isValid) {
 	  
