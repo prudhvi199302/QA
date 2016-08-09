@@ -1,0 +1,232 @@
+<html ng-app="myapp">
+<head>
+<title>DELIVERY PERSON</title>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="delivery.js"></script>
+
+</head>
+
+<body class="container">
+  <div class="row">
+
+   <div class="col-lg-16 text-center">
+      <h3 class="events">DELIVERY ASSIGN:</h3>
+
+ </div>
+ </div>
+  <br><br>
+
+<form name="frm" ng-controller="mycontroller" action="" method="POST" novalidate >
+
+  <div class="row">
+      <div class="col-lg-12">
+        <!-- Order field -->
+        <div class="frm-group col-lg-4">
+          <label>ORDER NUMBER:</label>
+          <input type="text" name="order" Placeholder="order number" class="frm-control"
+          ng-model="order"
+          ng-pattern="/^[0-9]{1,4}$/"
+          ng-required="true">
+
+          <!-- ngMessages goes here -->
+          <div class="has-error">
+            <span ng-show="frm.order.$error.required && frm.order.$touched" class="help-block">Order number is required</span>
+            <span ng-show="frm.order.$error.pattern && frm.order.$dirty" class="help-block">Enter valid order number</span>
+          </div>
+        </div>
+
+
+
+        <!-- Date  -->
+        <div class="frm-group col-lg-4">
+          <label>DATE:</label>
+          <input type="date" name="currentdate"
+           ng-model="currentdate"
+         required>
+
+
+          <!-- ngMessages goes here -->
+          <div class="has-error">
+            <span ng-show="frm.currentdate.$error.required && frm.currentdate.$touched" class="help-block"> Date is required</span>
+           <span ng-show="frm.currentdate.$error.date && frm.currentdate.$dirty" class="help-block">Enter valid  date</span>
+          </div>
+        </div>
+          </div>
+        </div>
+
+
+        <br><br><br><br>
+<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<!---Street Address feild------->
+<div class="row">
+    <div class="col-lg-12">
+      <!-- street name  -->
+      <div class="frm-group col-lg-4">
+        <label>STREET NAME:</label>
+        <input type="text" name="streetname"
+         ng-model="streetname"
+         ng-pattern="/^[a-zA-Z 0-9/]{1,30}$/"
+         required>
+
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="frm.streetname.$error.required && frm.streetname.$touched" class="help-block">Street Name is required</span>
+          <span ng-show="frm.streetname.$error.pattern && frm.streetname.$dirty" class="help-block">Enter valid Street Name</span>
+        </div>
+      </div>
+
+      <!-- City name  -->
+      <div class="frm-group col-lg-4">
+        <label>CITY NAME:</label>
+       <input type="text" name="cityname"
+         ng-model="cityname"
+         ng-pattern="/^[a-zA-Z]+$/"
+           required>
+
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="frm.cityname.$error.required && frm.cityname.$touched" class="help-block">City Name is required</span>
+          <span ng-show="frm.cityname.$error.pattern && frm.cityname.$dirty" class="help-block">Enter valid City Name</span>
+        </div>
+      </div>
+
+      <!--  Area Code  -->
+      <div class="frm-group col-lg-4">
+        <label>AREA CODE:</label>
+       <input type="number" name="areacode"
+         ng-model="areacode"
+         ng-pattern="/^[0-9]{1,6}$/"
+           required>
+
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="frm.areacode.$error.required && frm.areacode.$touched" class="help-block">Area Code is required</span>
+          <span ng-show="frm.areacode.$error.pattern && frm.areacode.$dirty" class="help-block">Enter valid Area Code</span>
+        </div>
+      </div>
+
+
+    </div>
+  </div><br><br><br><br>
+
+
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+                      <!---AMOUNT feild------->
+                      <div class="row">
+                          <div class="col-lg-12">
+                            <!-- Amount  -->
+                            <div class="frm-group col-lg-4">
+                              <label>AMOUNT:</label>
+                              <input type="number" name="amt"
+                               ng-model="amt"
+                               ng-pattern="/^[0-9]{1,4}(\.[0-9]{1,2})?$/"
+                                 required>
+
+
+                              <!-- ngMessages goes here -->
+                              <div class="has-error">
+                                <span ng-show="frm.amt.$error.required && frm.amt.$touched" class="help-block"> Amount is required</span>
+                                <span ng-show="frm.amt.$error.pattern && frm.amt.$dirty" class="help-block">Enter valid AMOUNT</span>
+                              </div>
+                            </div>
+
+                              <!-- Sales Tax  -->
+                              <div class="frm-group col-lg-4">
+                                <label>SALES TAX:</label>
+                                <input type="number" name="salesamt"
+                                 ng-model="salesamt"
+                                 ng-pattern="/^[0-9]{1,2}(\.[0-9]{1,2})?$/"
+                                   required>
+
+
+                                <!-- ngMessages goes here -->
+                                <div class="has-error">
+                                  <span ng-show="frm.salesamt.$error.required && frm.salesamt.$touched" class="help-block"> Date is required</span>
+                                  <span ng-show="frm.salesamt.$error.pattern && frm.salesamt.$dirty" class="help-block">Enter valid  date</span>
+                                </div>
+                              </div>
+
+                              <!-- Total Tax  -->
+                              <div class="frm-group col-lg-4">
+                                <label>TOTAL AMOUNT:</label>
+                                <input type="number" name="totalamt"
+                                 ng-model="totalamt"
+                                 ng-pattern="/^[0-9]{1,3}(\.[0-9]{1,2})?$/"
+                                   required>
+
+
+                                <!-- ngMessages goes here -->
+                                <div class="has-error">
+                                  <span ng-show="frm.totalamt.$error.required && frm.totalamt.$touched" class="help-block"> Total Amount is required</span>
+                                  <span ng-show="frm.totalamt.$error.pattern && frm.totalamt.$dirty" class="help-block">Enter valid  Total Amount</span>
+                                </div>
+                              </div>
+
+                                </div>
+                              </div>  <br><br><br><br>
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="row">
+    <div class="col-lg-12">
+      <!--Delivery Person -->
+      <div class="frm-group col-lg-4">
+        <label>DELIVERY PERSON:</label>
+        <input type="text" name="deliveryperson" Placeholder="person name" class="frm-control"
+        ng-model="deliveryname"
+        ng-pattern="/^[a-zA-Z ]{1,25}$/"
+        required>
+
+        <!-- ngMessages goes here -->
+        <div class="has-error">
+          <span ng-show="frm.deliveryperson.$error.required && frm.deliveryperson.$touched" class="help-block">Name is required</span>
+          <span ng-show="frm.deliveryperson.$error.pattern && frm.deliveryperson.$touched" class="help-block">Enter valid Name</span>
+        </div>
+      </div>
+        </div>
+      </div>  <br><br><br><br>
+<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="row">
+    <div class="form-group col-lg-12">
+      <button type="submit" class="btn btn-danger center-block" ng-click="submitform(frm.$valid)" ng-disabled="frm.$invalid">Submit</button>
+    </div>
+  </div>
+
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
